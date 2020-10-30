@@ -30,7 +30,7 @@ import static se.citerus.dddsample.domain.model.voyage.SampleVoyages.*;
  */
 public class SampleDataGenerator {
 
-    private static final Timestamp base;
+    private static final Timestamp base; //时间戳
 
     static {
         try {
