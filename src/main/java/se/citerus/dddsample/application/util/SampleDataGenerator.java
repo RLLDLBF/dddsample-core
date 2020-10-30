@@ -40,9 +40,10 @@ public class SampleDataGenerator {
             throw new RuntimeException(e);
         }
     }
+    // 获取当前时间
 
-    private final PlatformTransactionManager transactionManager;
-    private final SessionFactory sf;
+    private final PlatformTransactionManager transactionManager; //事务管理器
+    private final SessionFactory sf;                             //负责初始化Hibernate，充当数据存储源的代理，并负责创建Session对象
     private final CargoRepository cargoRepository;
     private final VoyageRepository voyageRepository;
     private final LocationRepository locationRepository;
@@ -107,7 +108,7 @@ public class SampleDataGenerator {
                 {ts(300), ts(330), "LOAD", 6, 3, 6},
                 {ts(400), ts(440), "UNLOAD", 5, 3, 6}  // Unexpected event
         };
-        executeUpdate(jdbcTemplate, handlingEventSql, handlingEventArgs);
+        executeUpdate(jdbcTemplate, handlingEventSql, handlingEventArgs); //批量进行sql操作，插入运输路径，ts为时间戳
     }
 
     private static void loadCarrierMovementData(JdbcTemplate jdbcTemplate) {
@@ -118,7 +119,7 @@ public class SampleDataGenerator {
                 {2, "0202"},
                 {3, "0303"}
         };
-        executeUpdate(jdbcTemplate, voyageSql, voyageArgs);
+        executeUpdate(jdbcTemplate, voyageSql, voyageArgs); //批量插入voyageArgs
 
         String carrierMovementSql =
                 "insert into CarrierMovement (id, voyage_id, departure_location_id, arrival_location_id, departure_time, arrival_time, cm_index) " +
@@ -200,7 +201,7 @@ public class SampleDataGenerator {
     }
 
     public void generate() {
-        TransactionTemplate tt = new TransactionTemplate(transactionManager);
+        TransactionTemplate tt = new TransactionTemplate(transactionManager);   //使用模板方法设计模式对原始事务管理方式封装
         //loadSampleData(new JdbcTemplate(dataSource), tt);
 
         HandlingEventFactory handlingEventFactory = new HandlingEventFactory(
