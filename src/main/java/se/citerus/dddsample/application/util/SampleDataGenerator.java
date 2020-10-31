@@ -227,7 +227,9 @@ public class SampleDataGenerator {
                 session.save(DALLAS_TO_HELSINKI);
                 session.save(HELSINKI_TO_HONGKONG);
                 session.save(DALLAS_TO_HELSINKI_ALT);
+                // 这些存储在SampleVoyages.java里面
 
+                // 第一个sample：ABC123
                 RouteSpecification routeSpecification = new RouteSpecification(HONGKONG, HELSINKI, toDate("2009-03-15"));
                 TrackingId trackingId = new TrackingId("ABC123");
                 Cargo abc123 = new Cargo(trackingId, routeSpecification);
@@ -267,9 +269,9 @@ public class SampleDataGenerator {
 
                 // Cargo JKL567
 
-                RouteSpecification routeSpecification1 = new RouteSpecification(HANGZOU, STOCKHOLM, toDate("2009-03-18"));
-                TrackingId trackingId1 = new TrackingId("JKL567");
-                Cargo jkl567 = new Cargo(trackingId1, routeSpecification1);
+                RouteSpecification routeSpecification1 = new RouteSpecification(HANGZOU, STOCKHOLM, toDate("2009-03-18"));  // route
+                TrackingId trackingId1 = new TrackingId("JKL567");                                                          // tracking id
+                Cargo jkl567 = new Cargo(trackingId1, routeSpecification1);                                                 // cargo
 
                 Itinerary itinerary1 = new Itinerary(asList(
                         new Leg(HONGKONG_TO_NEW_YORK, HANGZOU, NEWYORK, toDate("2009-03-03"), toDate("2009-03-05")),
@@ -277,6 +279,7 @@ public class SampleDataGenerator {
                         new Leg(DALLAS_TO_HELSINKI, DALLAS, STOCKHOLM, toDate("2009-03-09"), toDate("2009-03-11"))
                 ));
                 jkl567.assignToRoute(itinerary1);
+                // 详细路径
 
                 session.save(jkl567);
 
