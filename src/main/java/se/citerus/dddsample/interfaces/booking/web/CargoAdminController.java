@@ -32,6 +32,9 @@ import java.util.Map;
  *
  * @see se.citerus.dddsample.interfaces.tracking.CargoTrackingController
  */
+
+// Controller层
+
 @Controller
 @RequestMapping("/admin")
 public final class CargoAdminController {
