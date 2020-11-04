@@ -27,25 +27,28 @@ public class BookingServiceImpl implements BookingService {
     this.cargoRepository = cargoRepository;
     this.locationRepository = locationRepository;
     this.routingService = routingService;
-  }
+  } //构造函数
 
+  //订阅新的货物运输
   @Override
   @Transactional
   public TrackingId bookNewCargo(final UnLocode originUnLocode,
                                  final UnLocode destinationUnLocode,
                                  final Date arrivalDeadline) {
     // TODO modeling this as a cargo factory might be suitable
-    final TrackingId trackingId = cargoRepository.nextTrackingId();
-    final Location origin = locationRepository.find(originUnLocode);
-    final Location destination = locationRepository.find(destinationUnLocode);
+    final TrackingId trackingId = cargoRepository.nextTrackingId();             //订单编号
+    final Location origin = locationRepository.find(originUnLocode);            //发货起点
+    final Location destination = locationRepository.find(destinationUnLocode);  //目的地
     final RouteSpecification routeSpecification = new RouteSpecification(origin, destination, arrivalDeadline);
-
+    //货物运输路径：发货起点，目的地，到达时间
     final Cargo cargo = new Cargo(trackingId, routeSpecification);
+    //Cargo——领域模型的核心，包含 订单编号、货物运输路径
 
     cargoRepository.store(cargo);
+    //在cargoRepository中存储cargo
     logger.info("Booked new cargo with tracking id " + cargo.trackingId().idString());
 
-    return cargo.trackingId();
+    return cargo.trackingId();  //返回订单编号
   }
 
   @Override
