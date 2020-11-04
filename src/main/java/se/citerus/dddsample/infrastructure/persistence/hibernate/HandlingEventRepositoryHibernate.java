@@ -17,6 +17,7 @@ public class HandlingEventRepositoryHibernate extends HibernateRepository implem
   public void store(final HandlingEvent event) {
     getSession().save(event);
   }
+  //Hibernate save
 
   @Override
   public HandlingHistory lookupHandlingHistoryOfCargo(final TrackingId trackingId) {

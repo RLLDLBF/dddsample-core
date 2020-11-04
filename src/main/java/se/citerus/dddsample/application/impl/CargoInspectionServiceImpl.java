@@ -28,6 +28,7 @@ public class CargoInspectionServiceImpl implements CargoInspectionService {
   }
   //构造函数
 
+  //根据查询，inspectCargo调用函数onMessage未被其他函数调用
   @Override
   @Transactional
   public void inspectCargo(final TrackingId trackingId) {
@@ -40,6 +41,8 @@ public class CargoInspectionServiceImpl implements CargoInspectionService {
     }
 
     final HandlingHistory handlingHistory = handlingEventRepository.lookupHandlingHistoryOfCargo(trackingId);
+    logger.info("look up Handling History Of Cargo");
+    //根据订单号查询历史运输方案
 
     cargo.deriveDeliveryProgress(handlingHistory);
 
