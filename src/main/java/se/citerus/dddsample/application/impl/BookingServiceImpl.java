@@ -54,15 +54,17 @@ public class BookingServiceImpl implements BookingService {
   @Override
   @Transactional
   public List<Itinerary> requestPossibleRoutesForCargo(final TrackingId trackingId) {
-    final Cargo cargo = cargoRepository.find(trackingId);
+    final Cargo cargo = cargoRepository.find(trackingId); //根据订单号在数据库中查询cargo
 
     if (cargo == null) {
       return Collections.emptyList();
-    }
+    }//若不存在，返回空列表
 
     return routingService.fetchRoutesForSpecification(cargo.routeSpecification());
+    //routeSpecification就是一个封装（发货起点，目的地，到达时间），根据这些内容查询最短路径候选项的List
   }
 
+  //给cargo安排运输路径
   @Override
   @Transactional
   public void assignCargoToRoute(final Itinerary itinerary, final TrackingId trackingId) {
@@ -77,6 +79,7 @@ public class BookingServiceImpl implements BookingService {
     logger.info("Assigned cargo " + trackingId + " to new route");
   }
 
+  //改变目的地
   @Override
   @Transactional
   public void changeDestination(final TrackingId trackingId, final UnLocode unLocode) {

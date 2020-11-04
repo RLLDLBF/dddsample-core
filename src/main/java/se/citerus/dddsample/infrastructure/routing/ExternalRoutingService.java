@@ -41,6 +41,7 @@ public class ExternalRoutingService implements RoutingService {
 
     final Properties limitations = new Properties();
     limitations.setProperty("DEADLINE", routeSpecification.arrivalDeadline().toString());
+    //到货日期
 
     final List<TransitPath> transitPaths;
     transitPaths = graphTraversalService.findShortestPath(
@@ -48,12 +49,14 @@ public class ExternalRoutingService implements RoutingService {
       destination.unLocode().idString(),
       limitations
     );
+    //根据起点和目的地在全图中找最短路径
 
     /*
      The returned result is then translated back into our domain model.
     */
     final List<Itinerary> itineraries = new ArrayList<Itinerary>();
 
+    //筛选出满足条件的路径
     for (TransitPath transitPath : transitPaths) {
       final Itinerary itinerary = toItinerary(transitPath);
       // Use the specification to safe-guard against invalid itineraries
@@ -65,6 +68,7 @@ public class ExternalRoutingService implements RoutingService {
     }
 
     return itineraries;
+    //返回满足条件的最短路径List
   }
 
   private Itinerary toItinerary(TransitPath transitPath) {
