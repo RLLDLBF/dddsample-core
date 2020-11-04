@@ -26,6 +26,7 @@ public class CargoInspectionServiceImpl implements CargoInspectionService {
     this.cargoRepository = cargoRepository;
     this.handlingEventRepository = handlingEventRepository;
   }
+  //构造函数
 
   @Override
   @Transactional
