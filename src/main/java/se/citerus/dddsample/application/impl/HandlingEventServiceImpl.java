@@ -29,9 +29,11 @@ public class HandlingEventServiceImpl implements HandlingEventService {
     this.applicationEvents = applicationEvents;
     this.handlingEventFactory = handlingEventFactory;
   }
+  //构造函数
 
+  //registerHandlingEvent调用函数为JMS MessageListener中的onMessage
   @Override
-  @Transactional(rollbackFor = CannotCreateHandlingEventException.class)
+  @Transactional(rollbackFor = CannotCreateHandlingEventException.class)  //注解：这个类中的方法遇到异常（包括非运行时异常）就会回滚
   public void registerHandlingEvent(final Date completionTime,
                                     final TrackingId trackingId,
                                     final VoyageNumber voyageNumber,
@@ -44,15 +46,18 @@ public class HandlingEventServiceImpl implements HandlingEventService {
     final HandlingEvent event = handlingEventFactory.createHandlingEvent(
       registrationTime, completionTime, trackingId, voyageNumber, unLocode, type
     );
+    //使用工厂模式创造一个HandlingEvent
 
     /* Store the new handling event, which updates the persistent
        state of the handling event aggregate (but not the cargo aggregate -
        that happens asynchronously!)
      */
     handlingEventRepository.store(event);
+    //存储event
 
     /* Publish an event stating that a cargo has been handled. */
     applicationEvents.cargoWasHandled(event);
+    //发布handled消息
 
     logger.info("Registered handling event");
   }

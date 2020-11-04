@@ -28,7 +28,7 @@ public class CargoInspectionServiceImpl implements CargoInspectionService {
   }
   //构造函数
 
-  //根据查询，inspectCargo调用函数onMessage未被其他函数调用
+  //inspectCargo调用函数为JMS MessageListener中的onMessage
   @Override
   @Transactional
   public void inspectCargo(final TrackingId trackingId) {
