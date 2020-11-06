@@ -14,6 +14,8 @@ import javax.jms.ObjectMessage;
  * proper registration.
  * 
  */
+
+//这里监听Message
 public class HandlingEventRegistrationAttemptConsumer implements MessageListener {
 
   private HandlingEventService handlingEventService;

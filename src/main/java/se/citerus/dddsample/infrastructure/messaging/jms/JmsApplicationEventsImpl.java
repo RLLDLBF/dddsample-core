@@ -17,6 +17,8 @@ import javax.jms.Session;
 /**
  * JMS based implementation.
  */
+
+//这里createMessage
 public final class JmsApplicationEventsImpl implements ApplicationEvents {
 
   private JmsOperations jmsOperations;

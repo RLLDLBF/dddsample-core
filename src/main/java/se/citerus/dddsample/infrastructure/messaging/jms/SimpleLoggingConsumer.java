@@ -6,6 +6,8 @@ import org.apache.commons.logging.LogFactory;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
+
+//这里监听Message
 public class SimpleLoggingConsumer implements MessageListener {
 
   private final Log logger = LogFactory.getLog(SimpleLoggingConsumer.class);

@@ -16,6 +16,8 @@ import javax.jms.TextMessage;
  * This is a programmatic hook into the JMS infrastructure to
  * make cargo inspection message-driven.
  */
+
+//这里监听Message
 public class CargoHandledConsumer implements MessageListener {
 
   private CargoInspectionService cargoInspectionService;
