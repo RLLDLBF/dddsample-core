@@ -11,6 +11,8 @@ import java.util.UUID;
 /**
  * Hibernate implementation of CargoRepository.
  */
+
+//这里是sql语句
 @Repository
 public class CargoRepositoryHibernate extends HibernateRepository implements CargoRepository {
 
@@ -29,6 +31,7 @@ public class CargoRepositoryHibernate extends HibernateRepository implements Car
 
   public TrackingId nextTrackingId() {
     // TODO use an actual DB sequence here, UUID is for in-mem
+    //这里数据都是暂时存储在内存中的，因此每次重新启动程序之前缓存的数据都会清除
     final String random = UUID.randomUUID().toString().toUpperCase();
     return new TrackingId(
       random.substring(0, random.indexOf("-"))

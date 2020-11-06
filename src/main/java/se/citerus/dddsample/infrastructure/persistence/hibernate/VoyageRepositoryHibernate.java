@@ -8,6 +8,8 @@ import se.citerus.dddsample.domain.model.voyage.VoyageRepository;
 /**
  * Hibernate implementation of CarrierMovementRepository.
  */
+
+//这里是sql语句
 @Repository
 public class VoyageRepositoryHibernate extends HibernateRepository implements VoyageRepository {
 

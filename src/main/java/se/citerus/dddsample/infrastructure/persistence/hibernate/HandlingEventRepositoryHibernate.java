@@ -10,6 +10,8 @@ import se.citerus.dddsample.domain.model.handling.HandlingHistory;
  * Hibernate implementation of HandlingEventRepository.
  *
  */
+
+//这里是sql语句
 @Repository
 public class HandlingEventRepositoryHibernate extends HibernateRepository implements HandlingEventRepository {
 

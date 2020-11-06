@@ -7,6 +7,7 @@ import se.citerus.dddsample.domain.model.location.UnLocode;
 
 import java.util.List;
 
+//这里是sql语句
 @Repository
 public class LocationRepositoryHibernate extends HibernateRepository implements LocationRepository {
 
